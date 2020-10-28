@@ -1,0 +1,15 @@
+version: '3.7'
+services: 
+    nginx:
+        image: nginx:1.19
+        ports:
+            - 80:80 
+        volumes: 
+            - ./src:/var/www/php:ro
+            - ./.docker/nginx/conf.d:/etc/nginx/conf.d
+
+    php:
+        image: php:7.4-fpm
+        working_dir: /var/www/php
+        volumes:
+            - ./src:/var/www/php
